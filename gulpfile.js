@@ -13,6 +13,7 @@ var $ = require('gulp-load-plugins')();
 // const livereload = require('gulp-livereload');
 // const connect = require('gulp-connect');
 // const open = require("open");
+const rev = require('gulp-rev');
 const opn = require("opn");
 
 //定义默认任务
@@ -26,10 +27,10 @@ gulp.task('jshint', function() {
 //设置babel任务,将ES6语法转换成ES5语法,同时为了保证jshint 在babel之前,需在中间加入jshint
 gulp.task('babel',['jshint'], function() {
     return  gulp.src('src/js/*.js')
-        .pipe($.babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest('./build/js'))
+      .pipe($.babel({
+        presets: ['es2015']
+      }))
+      .pipe(gulp.dest('./build/js'))
 });
 
 //设置合并js代码的任务
@@ -57,10 +58,10 @@ gulp.task('minifyjs', function() {
             presets: ['es2015']
         }))
         .pipe(gulp.dest('./build/js'))
-        .pipe($.concat('built.js'))
+        // .pipe($.concat('built.js')) // 合并js代码
         .pipe(gulp.dest('./build/js'))
         .pipe($.uglify())
-        .pipe($.rename('dist.min.js'))
+        // .pipe($.rename('dist.min.js')) //重命名
         .pipe(gulp.dest('./dist/js'))
         .pipe($.livereload());
 });
@@ -72,8 +73,8 @@ gulp.task('minifycss', function () {
                 new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]}),
             ]
         }))
-        // .pipe(gulp.dest('./build/css'))
-        // .pipe($.concat('built.css'))
+        .pipe(gulp.dest('./build/css'))
+        .pipe($.concat('built.css'))
         .pipe(gulp.dest('build/css'))
         .pipe($.cssmin())
         .pipe($.rename('dist.min.css'))
@@ -99,9 +100,9 @@ gulp.task('watch',['default'], function () {
         port: 4000,
     });
     opn('http://localhost:4000');
-    gulp.watch('src/less/!*.less', ['minifycss']);
-    gulp.watch('src/js/!*.js', ['minifyjs']);
-    gulp.watch('src/!*.html', ['minifyhtml']);
+    gulp.watch('src/less/*.less', ['minifycss']);
+    gulp.watch('src/js/*.js', ['minifyjs']);
+    gulp.watch('src/*.html', ['minifyhtml']);
 });
 
 gulp.task('default', ['minifyjs','minifycss','minifyhtml']); //异步执行

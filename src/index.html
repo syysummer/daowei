@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>首页</title>
   <link rel="stylesheet" href="./css/reset.css">
-  <link rel="stylesheet" href="mixins.css">
   <link rel="stylesheet" href="./css/dist.min.css">
   <link href="https://cdn.bootcss.com/Swiper/4.3.0/css/swiper.css" rel="stylesheet">
 </head>
@@ -48,29 +47,25 @@
         <div class="swiper-pagination"></div>
       </div>
     </div>
+
+    <!--导航区-->
     <div class="server-nav">
       <ul class="serviceIndex">
-        <!--放置服务导航-->
-        <li>家庭保洁&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>上门按摩&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>上门维修&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>家电清洗&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>衣物洗护&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>搬家速运&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>美容美妆&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>上门安装&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>上门医护&nbsp;&nbsp;&nbsp;&gt;</li>
-        <li>保姆月嫂&nbsp;&nbsp;&nbsp;&gt;</li>
-      </ul>
-      <ul class="serviceType">
-        <script id="serverNav" type="text/html">
-          <!--放置服务导航item-->
-          {{each serviceType as value}}
-          <li>{{value}}</li>
+        <script id="navList" type="text/html">
+          {{each data as value i}}
+          <li class="serverItem">
+            <span>{{value.serviceIndex}}</span>
+            <ul class="serviceType">
+              {{each value.serviceType as item i}}
+              <li><a href="">{{item}}</a></li>
+              {{/each}}
+            </ul>
+          </li>
           {{/each}}
-        </script>
+         </script>
       </ul>
     </div>
+
   </div>
 
   <!--服务专区-->
@@ -187,10 +182,9 @@
 
 </div>
 
-
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script src="https://cdn.bootcss.com/Swiper/4.3.0/js/swiper.js"></script>
 <script src="./js/template.js"></script>
-<script src="./js/dist.min.js"></script>
+<script src="./js/index.js"></script>
 </body>
 </html>
