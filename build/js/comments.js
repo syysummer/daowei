@@ -108,6 +108,7 @@ $(function () {
     for (var _i3 = 0; _i3 < $pages.length; _i3++) {
       _loop2(_i3);
     }
+
     // 点击上一页和下一页是切换分页器
     $('.pre').click(function () {
       var current = lastPage;
@@ -132,7 +133,8 @@ $(function () {
       changUlContent(lastPage);
       hideMiddlePage(lastPage);
     });
-    var morepage = void 0;
+
+    var morepage = void 0; // 中间的省略号,代表隐藏页
     function hideMiddlePage(lastPage) {
       if (lastPage >= 4) {
         var pageFour = $('.pageList').children().eq(4);

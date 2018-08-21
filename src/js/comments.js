@@ -96,6 +96,7 @@ $(function () {
         hideMiddlePage(lastPage)
       }
     }
+
     // 点击上一页和下一页是切换分页器
     $('.pre').click(function (){
       let current = lastPage
@@ -120,7 +121,8 @@ $(function () {
       changUlContent(lastPage)
       hideMiddlePage(lastPage)
     })
-    let morepage
+
+    let morepage // 中间的省略号,代表隐藏页
     function hideMiddlePage(lastPage){
       if(lastPage >= 4){
         let pageFour = $('.pageList').children().eq(4)
@@ -143,6 +145,7 @@ $(function () {
         }
       }
     }
+
   })
 
   // 获取热门城市相关数据
